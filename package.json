@@ -1,0 +1,27 @@
+{
+  "name": "scribble",
+  "version": "1.0.0",
+  "description": "Remember Everything, with scribble. A decentralized Note-keeping tool on IPFS.",
+  "main": "scribble.js",
+  "scripts": {
+    "test": "nodemon scribble",
+    "compile": "browserify scribble.js -o dist/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cluster-labs/scribble.git"
+  },
+  "keywords": [
+    "scribble",
+    "IPFS",
+    "ipfscloud",
+    "clusterlabs",
+    "towardsblockchain"
+  ],
+  "author": "Vaibhav Saini (vasa-develop)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cluster-labs/scribble/issues"
+  },
+  "homepage": "https://github.com/cluster-labs/scribble#readme"
+}
