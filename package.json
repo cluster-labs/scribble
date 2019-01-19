@@ -4,8 +4,7 @@
   "description": "Remember Everything, with scribble. A decentralized Note-keeping tool on IPFS.",
   "main": "scribble.js",
   "scripts": {
-    "test": "nodemon scribble",
-    "compile": "browserify scribble.js -o dist/bundle.js"
+    "test": "browserify scribble.js -o dist/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/cluster-labs/scribble/issues"
   },
-  "homepage": "https://github.com/cluster-labs/scribble#readme"
+  "homepage": "https://github.com/cluster-labs/scribble#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "ipfs": "^0.34.0",
+    "orbit-db": "^0.19.9"
+  }
 }
