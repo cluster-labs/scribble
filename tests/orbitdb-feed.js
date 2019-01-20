@@ -1,17 +1,33 @@
-const IPFS = require('ipfs')
-const OrbitDB = require('orbit-db')
+const IPFS = require('ipfs');
+const OrbitDB = require('orbit-db');
 
-const ipfs = new IPFS()
-const orbitdb = new OrbitDB(ipfs)
+// OrbitDB uses Pubsub which is an experimental feature
+// and need to be turned on manually.
+// Note that these options need to be passed to IPFS in
+// all examples even if not specified so.
+const ipfsOptions = {
+  'EXPERIMENTAL': {
+    'pubsub': true
+  }
+}
 
-const feed = orbitdb.feed('haad.posts')
-feed.add({ title: 'Hello', content: 'World' })
-  .then(() => {
-    const posts = feed.iterator().collect()
-    posts.forEach((post) => {
-      let data = post.payload.value
-      console.log(data.title + '\n', data.content)
-      // Hello 
-      //  World   
-    })
-  })
+// Create IPFS instance
+const ipfs = new IPFS(ipfsOptions);
+
+ipfs.on('error', (e) => console.error(e));
+ipfs.on('ready', async () => {
+  const orbitdb = new OrbitDB(ipfs);
+
+  const feed = await orbitdb.feed('myfeed');
+  await feed.load();
+
+  feed.add({ title: 'Scribble Note', content: 'Hello World' })
+    .then(() => {
+      const posts = feed.iterator().collect()
+      posts.forEach((post) => {
+        let data = post.payload.value
+        console.log(data.title + '\n', data.content)   
+      });
+    });
+
+});
